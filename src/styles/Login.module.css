@@ -1,0 +1,26 @@
+.container {
+  @apply flex flex-col justify-center items-center;
+  @apply h-screen w-screen;
+}
+
+.form {
+  @apply flex flex-col w-80 m-auto justify-center bg-white;
+  @apply pt-5 px-5 pb-6 rounded-lg shadow-sm border border-gray-100;
+}
+
+.logo {
+  @apply text-xl font-bold mb-3 text-gray-300 text-left;
+}
+
+.description {
+  @apply text-3xl text-gray-500 text-center;
+}
+
+.error {
+  @apply text-sm text-red-500 text-center bg-red-100 rounded-md;
+  @apply py-2.5 w-full;
+}
+
+.submitButton {
+  @apply text-white bg-blue-500 w-full;
+}

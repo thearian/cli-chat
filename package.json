@@ -1,0 +1,45 @@
+{
+  "name": "discuss-fe",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "prepare": "husky install",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
+  },
+  "dependencies": {
+    "@apollo/client": "^3.4.7",
+    "@heroicons/react": "^1.0.4",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "graphql": "^15.5.1",
+    "next": "11.1.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-hook-form": "^7.12.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.3.3",
+    "@types/react": "17.0.17",
+    "autoprefixer": "^10.3.1",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "11.1.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-app": "^6.2.2",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.2",
+    "postcss": "^8.3.6",
+    "prettier": "^2.3.2",
+    "tailwindcss": "^2.2.7",
+    "typescript": "4.3.5"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,css,json}": [
+      "prettier -wc"
+    ]
+  }
+}

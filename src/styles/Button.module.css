@@ -1,0 +1,7 @@
+.button {
+  @apply inline-flex items-center justify-center;
+  @apply px-4 py-2 select-none;
+  @apply border border-transparent rounded-md shadow-sm outline-none;
+  @apply text-sm cursor-pointer font-normal;
+  outline: none !important;
+}

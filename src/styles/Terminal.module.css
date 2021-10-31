@@ -1,0 +1,12 @@
+.container {
+  @apply w-full h-screen;
+}
+
+.chat {
+  @apply fixed w-full h-screen bg-gray-900 text-white p-3;
+  @apply z-30 opacity-50;
+}
+
+.glass {
+  @apply fixed w-full h-screen bg-gray-900 text-white p-3 z-0;
+}
