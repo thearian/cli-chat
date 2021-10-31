@@ -1,12 +1,14 @@
 .container {
-  @apply w-full h-screen;
-}
-
-.chat {
-  @apply fixed w-full h-screen bg-gray-900 text-white p-3;
-  @apply z-30 opacity-50;
+  @apply w-full h-screen font-mono;
 }
 
 .glass {
-  @apply fixed w-full h-screen bg-gray-900 text-white p-3 z-0;
+  @apply fixed w-full h-screen bg-gray-800 text-white p-10 z-0;
+  @apply outline-none border-none;
+}
+
+
+.chat {
+  @apply glass;
+  @apply z-30 opacity-50 bg-black;
 }
