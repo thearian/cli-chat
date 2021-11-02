@@ -1,4 +1,5 @@
 import { KeyboardEvent, useState } from "react";
+import { commandsMap } from "../commands";
 
 export default function useSearch() {
     const [chat,setChat] = useState<string>("");
@@ -25,10 +26,13 @@ export default function useSearch() {
 
     const searchCommand = (expression: string): string => {
         const word = expression.split("/")[1];
-        const commands = ["start","reply","like","react","dislike"];
-        const searched = commands.filter(command =>
+        if (!word) return expression;
+        const commands = commandsMap;
+
+        const searched = Object.keys(commands).filter(command =>
             command.slice(0, word.length) == word
         )
+        
         return searched.length > 0 ?
             "/"+searched[0] :
             expression

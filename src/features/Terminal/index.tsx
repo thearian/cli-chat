@@ -10,6 +10,7 @@ export default function Terminal() {
                 className={styles.chat}
                 defaultValue={chat}
                 onKeyDownCapture={updateChat}
+                onKeyUpCapture={updateChat}
             ></textarea>
             <textarea
                 value={chat}
