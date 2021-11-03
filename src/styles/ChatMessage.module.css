@@ -1,0 +1,15 @@
+.container {
+    @apply flex flex-row items-start justify-between p-5 pb-0;
+}
+
+.user {
+    @apply text-gray-500 uppercase font-bold mr-3;
+}
+
+.content {
+    @apply mr-3;
+}
+
+.date {
+    @apply text-gray-500 mr-3;
+}

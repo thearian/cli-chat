@@ -1,14 +1,24 @@
 .container {
-  @apply w-full h-screen font-mono;
+  @apply fixed w-full h-screen flex flex-col bg-gray-900 text-white font-mono;
+}
+
+.dollarSign {
+  @apply flex items-center py-5 pl-5 text-gray-500;
+}
+
+.newChat {
+  @apply flex flex-row;
 }
 
 .glass {
-  @apply fixed w-full h-screen bg-gray-800 text-white p-10 z-0;
-  @apply outline-none border-none;
+  @apply w-full absolute bg-gray-900 z-0 ring-0 border-none py-5 px-2;
 }
 
+.glass:focus {
+  @apply ring-0;
+}
 
 .chat {
   @apply glass;
-  @apply z-30 opacity-50 bg-black;
+  @apply z-30 opacity-50 bg-gray-900 ring-0;
 }

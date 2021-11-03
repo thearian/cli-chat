@@ -13,5 +13,9 @@ export const commandsMap: CommandsMap = {
     join: {
         struct: "/join GROUPE_NAME",
         info: "Joins you to the groupe"
+    },
+    goto: {
+        struct: "/goto GROUPE_NAME",
+        info: "Changes the current chat"
     }
 }
