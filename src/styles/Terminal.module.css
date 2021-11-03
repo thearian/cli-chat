@@ -3,15 +3,15 @@
 }
 
 .dollarSign {
-  @apply flex items-center py-5 pl-5 text-gray-500;
+  @apply flex items-center py-0 pl-5 text-gray-500;
 }
 
 .newChat {
-  @apply flex flex-row;
+  @apply flex flex-col py-5;
 }
 
 .glass {
-  @apply w-full absolute bg-gray-900 z-0 ring-0 border-none py-5 px-2;
+  @apply w-full absolute bg-gray-900 z-0 ring-0 border-none py-0 px-3;
 }
 
 .glass:focus {

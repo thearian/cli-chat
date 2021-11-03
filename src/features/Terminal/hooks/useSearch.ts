@@ -1,15 +1,17 @@
 import { KeyboardEvent, useState } from "react";
-import { commandsMap } from "../commands";
+import { Command, commandsMap } from "../commands";
 
 export default function useSearch() {
     const [chat,setChat] = useState<string>("");
+    const [help,setHelp] = useState<string>("");
 
     const updateChat = (event: KeyboardEvent<HTMLTextAreaElement>, send: Function) => {
         const newChat = (event.target as HTMLInputElement).value;
         const recommend = searchPresets(newChat);
         if (event.key == 'Tab') {
             event.preventDefault();
-            (event.target as HTMLInputElement).value = recommend;
+            if (recommend)
+                (event.target as HTMLInputElement).value = "/" + recommend.expression;
         }
         if (event.key == 'Enter') {
             if (newChat.length == 0) return;
@@ -19,32 +21,38 @@ export default function useSearch() {
             send(newChat);
             return;
         }
-        setChat(recommend);
+        if (recommend) {
+            setChat("/" + recommend.expression);
+            setHelp(recommend.struct)
+        }
+        else {
+            setChat(newChat)
+            setHelp("")
+        }
     }
     
-    const searchPresets = (text: string): string => {
-        let recommend = text;
+    const searchPresets = (text: string): Command | null => {
+        let foundCommand = null;
         if (text[0] == "/") {
-            recommend = searchCommand(recommend);
+            foundCommand = searchCommand(text);
         }
-        if (text.includes("@")) {
-            recommend = searchUserAsFlag(recommend)
-        }
-        return recommend;
+        // if (text.includes("@")) {
+        //     recommend = searchUserAsFlag(recommend)
+        // }
+        return foundCommand;
     }
 
-    const searchCommand = (expression: string): string => {
+    const searchCommand = (expression: string): Command | null => {
         const word = expression.split("/")[1];
-        if (!word) return expression;
-        const commands = commandsMap;
+        if (!word) return null;
 
-        const searched = Object.keys(commands).filter(command =>
+        const searched = Object.keys(commandsMap).filter(command =>
             command.slice(0, word.length) == word
         )
+        const isFound = searched.length > 0;
         
-        return searched.length > 0 ?
-            "/"+searched[0] :
-            expression
+        if (isFound) return commandsMap[searched[0]];
+        return null;
     }
 
     const searchUserAsFlag = (expression: string): string => {
@@ -62,5 +70,5 @@ export default function useSearch() {
             expression
     }
 
-    return {chat, updateChat};
+    return {chat, updateChat, help};
 }
