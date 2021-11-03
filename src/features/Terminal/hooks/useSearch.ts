@@ -2,10 +2,10 @@ import { KeyboardEvent, useState } from "react";
 import { Command, commandsMap } from "../commands";
 
 export default function useSearch() {
-    const [chat,setChat] = useState<string>("");
+    const [message,setMessage] = useState<string>("");
     const [help,setHelp] = useState<string>("");
 
-    const updateChat = (event: KeyboardEvent<HTMLTextAreaElement>, send: Function) => {
+    const updateMessage = (event: KeyboardEvent<HTMLTextAreaElement>, send: Function) => {
         const newChat = (event.target as HTMLInputElement).value;
         const recommend = searchPresets(newChat);
         if (event.key == 'Tab') {
@@ -17,16 +17,16 @@ export default function useSearch() {
             if (newChat.length == 0) return;
             event.preventDefault();
             (event.target as HTMLInputElement).value = '';
-            setChat('');
+            setMessage('');
             send(newChat);
             return;
         }
         if (recommend) {
-            setChat("/" + recommend.expression);
+            setMessage("/" + recommend.expression);
             setHelp(recommend.struct)
         }
         else {
-            setChat(newChat)
+            setMessage(newChat)
             setHelp("")
         }
     }
@@ -70,5 +70,5 @@ export default function useSearch() {
             expression
     }
 
-    return {chat, updateChat, help};
+    return {message, updateMessage, help};
 }

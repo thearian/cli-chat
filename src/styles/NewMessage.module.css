@@ -1,0 +1,16 @@
+.dollarSign {
+  @apply flex items-center py-0 pl-5 text-gray-500;
+}
+
+.glass {
+  @apply w-full absolute bg-gray-900 z-0 ring-0 border-none py-0 px-3;
+}
+
+.glass:focus {
+  @apply ring-0;
+}
+
+.chat {
+  @apply glass;
+  @apply z-30 opacity-50 bg-gray-900 ring-0;
+}
