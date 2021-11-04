@@ -1,0 +1,11 @@
+.container {
+    @apply flex flex-row text-gray-500;
+}
+
+.info {
+    @apply flex flex-row ml-5;
+}
+
+.newMessageType {
+    @apply ml-1;
+}

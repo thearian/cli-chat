@@ -2,15 +2,16 @@ import Chats from "@/components/Chats";
 import HelpBar from "@/components/HelpBar";
 import NewMessage from "@/components/NewMessage";
 import styles from "@/styles/Terminal.module.css";
-import { KeyboardEvent, useRef } from "react";
+import { KeyboardEvent, useRef, useState } from "react";
 import useMessage from "./hooks/useMessage";
 import useSearch from "./hooks/useSearch";
 
 export default function Terminal() {
+    const [conversation, setConversation] = useState("master");
     const {message, updateMessage, help} = useSearch();
+    const {send, messages} = useMessage();
     const newMessageRef = useRef<HTMLTextAreaElement>(null)
 
-    const {send, messages} = useMessage();
 
     const focusNewChat = () => {
         newMessageRef.current?.focus()
@@ -27,6 +28,8 @@ export default function Terminal() {
 
             <div className={styles.newChat}>
                 <NewMessage
+                    conversation={conversation}
+                    user={"arian"}
                     value={message}
                     handleChatChange={handleChatChange}
                     newMessageRef={newMessageRef}

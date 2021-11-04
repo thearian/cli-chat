@@ -1,15 +1,18 @@
 import styles from "@/styles/NewMessage.module.css";
 import { RefObject, KeyboardEvent } from "react";
+import QuickInfo from "../QuickInfo";
 
 type Props = {
     value: string,
     handleChatChange: (event: KeyboardEvent<HTMLTextAreaElement>) => void,
-    newMessageRef:  RefObject<HTMLTextAreaElement>
+    newMessageRef:  RefObject<HTMLTextAreaElement>,
+    conversation: string,
+    user: string,
 }
 
 export default function NewMessage(props: Props) {
     return <div className="flex flex-row">
-        <span className={styles.dollarSign}>$</span>
+        <QuickInfo conversation={props.conversation} user={props.user} />
         <div className="flex flex-col">
             <textarea
                 className={styles.chat}
