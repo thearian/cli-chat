@@ -1,10 +1,4 @@
-export type Command = {
-    struct: string,
-    info: string
-    expression: string,
-}
-
-export type CommandsMap = Record<string,Command>;
+import { CommandsMap } from "./@types"
 
 export const commandsMap: CommandsMap = {
     new: {

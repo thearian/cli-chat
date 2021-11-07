@@ -3,8 +3,11 @@ import HelpBar from "@/components/HelpBar";
 import NewMessage from "@/components/NewMessage";
 import styles from "@/styles/Terminal.module.css";
 import { KeyboardEvent, useRef, useState } from "react";
+import { Command } from "./commands";
+import useCommand from "./hooks/useCommand";
 import useMessage from "./hooks/useMessage";
 import useSearch from "./hooks/useSearch";
+
 
 export default function Terminal() {
     const [conversation, setConversation] = useState("master");
@@ -17,8 +20,13 @@ export default function Terminal() {
         newMessageRef.current?.focus()
     }
 
+    const handleSendMessage = (content: string) => {
+        if (content[0] != "/") return send(content);
+        useCommand(content, setConversation);
+    }
+
     const handleChatChange = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-        updateMessage(event, send)
+        updateMessage(event, handleSendMessage)
     }
 
     return (
