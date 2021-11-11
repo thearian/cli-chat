@@ -1,5 +1,6 @@
 import { KeyboardEvent, useState } from "react";
-import { Command, commandsMap } from "../commands";
+import { commandsMap } from "../commands/map";
+import { Command } from "../commands/@types";
 
 export default function useSearch() {
     const [message,setMessage] = useState<string>("");

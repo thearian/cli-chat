@@ -15,5 +15,10 @@ export const commandsMap: CommandsMap = {
         expression: "goto",
         struct: "/goto GROUPE_NAME",
         info: "Changes the current chat"
+    },
+    list: {
+        expression: "list",
+        struct: "/list",
+        info: "Shows all your conversations"
     }
 }
