@@ -11,5 +11,5 @@
 }
 
 .date {
-    @apply text-gray-500 mr-3;
+    @apply text-gray-500;
 }

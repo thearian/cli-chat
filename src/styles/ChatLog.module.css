@@ -1,0 +1,15 @@
+.container {
+    @apply flex flex-row justify-between items-center p-5 pb-0;
+}
+
+.commandName {
+    @apply font-bold text-green-400 uppercase mr-3;
+}
+
+.commandWords {
+    @apply text-gray-500;
+}
+
+.date {
+    @apply text-gray-500;
+}

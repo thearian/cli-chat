@@ -12,7 +12,7 @@ export default function Terminal() {
     const [conversation, setConversation] = useState("master");
     const newMessageRef = useRef<HTMLTextAreaElement>(null)
     const {message, updateMessage, help} = useSearch();
-    const {send, messages} = useMessage();
+    const {send, log, history} = useMessage();
     const commandProvider = useCommand();
 
 
@@ -22,7 +22,7 @@ export default function Terminal() {
 
     const handleSendMessage = (content: string) => {
         if (content[0] != "/") return send(content);
-        commandProvider(content, setConversation)
+        commandProvider(content, setConversation, log)
     }
 
     const handleChatChange = (event: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -32,7 +32,7 @@ export default function Terminal() {
     return (
         <div className={styles.container} onClick={focusNewChat}>
 
-            <Chats messages={messages} />
+            <Chats history={history} />
 
             <div className={styles.newChat}>
                 <NewMessage

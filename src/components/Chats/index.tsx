@@ -1,15 +1,21 @@
-import { Message } from "../@types"
+import { History, HistoryRecordType, Log, Message } from "../@types"
 import styles from "../../styles/Chats.module.css"
 import ChatMessage from "../ChatMessage"
+import ChatLog from "../ChatLog"
 
 type Props = {
-    messages: Message[]
+    history: History[]
 }
-export default function Chats({ messages }: Props) {
+export default function Chats({ history }: Props) {
     return <div className={styles.container}>
         {
-            messages.map(message => {
-                return <ChatMessage data={message} />
+            history.map(item => {
+                if (item.type == HistoryRecordType.Message) {
+                    return <ChatMessage data={item.record as Message} />
+                }
+                if (item.type == HistoryRecordType.Log) {
+                    return <ChatLog data={item.record as Log} />
+                }
             })
         }
     </div>
