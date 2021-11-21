@@ -1,4 +1,4 @@
-import { RunCommand } from "@/features/Terminal/commands/@types"
+import { FullCommand } from "@/features/Terminal/commands/@types"
 
 export type Message = {
     user: string,
@@ -7,7 +7,7 @@ export type Message = {
 }
 
 export type Log = {
-    command: RunCommand,
+    command: FullCommand,
     description: string | string[],
     createdAt: Date,
 }

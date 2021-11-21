@@ -1,31 +1,31 @@
 import { Conversation, ListedConversations } from "@/components/@types";
 
-export type Command = {
+export type CommandDef= {
     struct: string,
     info: string
     expression: string,
 }
 
-export type RunCommand = {
-    commandName: Command,
+export type FullCommand = {
+    commandName: CommandDef,
     words: string[]
 }
 
-export type CommandsMap = Record<string,Command>;
+export type CommandsMap = Record<string,CommandDef>;
 
 // Resolvers Props
 export type NewConversationProps = {
-    command: RunCommand,
+    command: FullCommand,
     addConversation: Function,
 }
 
 export type JoinConversationProps = {
-    command: RunCommand,
+    command: FullCommand,
     joinConversation: Function,
 }
 
 export type GotoConversationProps = {
-    command: RunCommand,
+    command: FullCommand,
     setConversation: Function,
     listConversations: Function
     listedConversations: ListedConversations,

@@ -1,6 +1,6 @@
 import { Message, Log, History, HistoryRecordType } from "@/components/@types"
 import { useState } from "react"
-import { RunCommand } from "../commands/@types"
+import { FullCommand } from "../commands/@types"
 
 export default function useMessage() {
     const [history, setHistory] = useState<History[]>([])
@@ -25,7 +25,7 @@ export default function useMessage() {
     };
 
 
-    function log(command: RunCommand, description: string) {
+    function log(command: FullCommand, description: string) {
         if (!command) return;
         const newLog: Log = {
             command,

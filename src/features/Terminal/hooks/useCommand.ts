@@ -1,4 +1,4 @@
-import { RunCommand } from "../commands/@types";
+import { FullCommand } from "../commands/@types";
 import { commandsMap } from "../commands/map";
 import { CommandResolvers } from "../commands/resolvers";
 import { ADD_CONVERSATION, GET_CONVERSATIONS, JOIN_CONVERSATION } from "@/graphql/conversation"
@@ -11,7 +11,7 @@ export default function useCommand(log: Function) {
     const [addConversation, addedConversation] = useMutation(ADD_CONVERSATION);
     const [joinConversation, joinedConversation] = useMutation(JOIN_CONVERSATION);
     const [listConversations, listedConversations] = useLazyQuery(GET_CONVERSATIONS);
-    const [currentCommand, setCurrentCommand] = useState<RunCommand>()
+    const [currentCommand, setCurrentCommand] = useState<FullCommand>()
 
 
     const provider = async ( expression: string, setConversation: Function) => {
@@ -19,22 +19,22 @@ export default function useCommand(log: Function) {
         const commandName = commandsMap[
             words[0].split("/")[1]
         ];
-        const runCommand: RunCommand = {
+        const FullCommand: FullCommand = {
             commandName,
             words,
         }
 
         const allProps = {
-            command: runCommand,
+            command: FullCommand,
             addConversation,
             joinConversation,
             setConversation,
             listConversations,
             listedConversations,
         }
-        const action = CommandResolvers[runCommand.commandName.expression]
+        const action = CommandResolvers[FullCommand.commandName.expression]
         await action(allProps)
-        setCurrentCommand(runCommand)
+        setCurrentCommand(FullCommand)
     }
     
 
@@ -51,7 +51,7 @@ export default function useCommand(log: Function) {
     }
     
     
-    function commandDescription(command: RunCommand, data?: any[]) {
+    function commandDescription(command: FullCommand, data?: any[]) {
         if (!data) return undefined;
         let description = null
         switch (command.commandName.expression) {

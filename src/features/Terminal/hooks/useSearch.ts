@@ -1,6 +1,6 @@
 import { KeyboardEvent, useState } from "react";
 import { commandsMap } from "../commands/map";
-import { Command } from "../commands/@types";
+import { CommandDef} from "../commands/@types";
 
 export default function useSearch() {
     const [message,setMessage] = useState<string>("");
@@ -32,7 +32,7 @@ export default function useSearch() {
         }
     }
     
-    const searchPresets = (text: string): Command | null => {
+    const searchPresets = (text: string): CommandDef| null => {
         let foundCommand = null;
         if (text[0] == "/") {
             foundCommand = searchCommand(text);
@@ -43,7 +43,7 @@ export default function useSearch() {
         return foundCommand;
     }
 
-    const searchCommand = (expression: string): Command | null => {
+    const searchCommand = (expression: string): CommandDef| null => {
         const word = expression.split("/")[1];
         if (!word) return null;
 
