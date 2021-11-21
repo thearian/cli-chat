@@ -33,3 +33,11 @@ export type Conversation = {
     delete_date?: Date,
     last_message_date?: Date,
 }
+
+type GetConversations = {
+    getConversations?: Conversation[]
+}
+
+export type ListedConversations = {
+    data?: GetConversations
+}

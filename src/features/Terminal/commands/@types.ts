@@ -1,3 +1,5 @@
+import { Conversation, ListedConversations } from "@/components/@types";
+
 export type Command = {
     struct: string,
     info: string
@@ -25,6 +27,8 @@ export type JoinConversationProps = {
 export type GotoConversationProps = {
     command: RunCommand,
     setConversation: Function,
+    listConversations: Function
+    listedConversations: ListedConversations,
 }
 
 export type listConversationsProps = {

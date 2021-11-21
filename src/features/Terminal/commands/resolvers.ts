@@ -26,9 +26,18 @@ async function joinConversation({ command, joinConversation}: JoinConversationPr
     })
 }
 
-async function gotoConversation({ command, setConversation}: GotoConversationProps) {
+async function gotoConversation({
+    command,
+    setConversation,
+    listConversations,
+    listedConversations
+}: GotoConversationProps) {
     const conversationTitle = command.words[1]
-    setConversation(conversationTitle)
+    await listConversations()
+    const userConversations = listedConversations.data?.getConversations?.map(
+        conversation => conversation.title
+    )
+    if (userConversations?.includes(conversationTitle)) setConversation(conversationTitle)
 }
 
 async function listConversations({ listConversations }: listConversationsProps) {
