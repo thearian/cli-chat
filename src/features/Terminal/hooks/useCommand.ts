@@ -13,6 +13,7 @@ export default function useCommand(log: Function) {
     const [listConversations, listedConversations] = useLazyQuery(GET_CONVERSATIONS);
     const [currentCommand, setCurrentCommand] = useState<RunCommand>()
 
+
     const provider = async ( expression: string, setConversation: Function) => {
         const words = expression.split(" ");
         const commandName = commandsMap[
@@ -36,25 +37,32 @@ export default function useCommand(log: Function) {
         setCurrentCommand(runCommand)
     }
     
+
     useEffect(() => {
         if (currentCommand) logCommand()
     })
 
-    function getDesc() {
-        const description = listedConversations.data?.getConversations?.map(
-            (conversation: Conversation) => conversation.title
-        )
-        
-        listedConversations.data = null
-        return description
-    }
-
+    
     function logCommand() {
-        const description = listedConversations.data ? getDesc() : undefined;
+        if (!currentCommand) return;
+        const description = commandDescription(currentCommand, listedConversations.data?.getConversations)
         log(currentCommand, description)
         setCurrentCommand(undefined)
     }
     
     
+    function commandDescription(command: RunCommand, data?: any[]) {
+        if (!data) return undefined;
+        let description = null
+        switch (command.commandName.expression) {
+            case "list":
+                description = (data as Conversation[]).map( conversation => conversation.title )
+                listedConversations.data = null
+            break;
+        }
+        return description
+    }
+
+
     return provider
 }
