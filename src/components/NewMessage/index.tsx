@@ -13,7 +13,7 @@ type Props = {
 export default function NewMessage(props: Props) {
     const glass = useRef<HTMLTextAreaElement>(null)
 
-    const oneRem = parseFloat(getComputedStyle(document.documentElement).fontSize)
+    const oneRem = 16 //parseFloat(window.getComputedStyle(document.documentElement).fontSize)
 
     const autoResize = (event: KeyboardEvent<HTMLTextAreaElement>) => {
         const self = (event.target as HTMLTextAreaElement)

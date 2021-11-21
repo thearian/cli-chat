@@ -10,7 +10,7 @@ export default function ChatLog({ data }: Props) {
         .slice(1,data.command.words.length)
         .join(" ")
 
-    const description = typeof data.description == 'object' ?
+    const description = (data.description && typeof data.description == 'object') ?
         data.description.map(
             descriptionItem => <span>{descriptionItem}</span>
         )
