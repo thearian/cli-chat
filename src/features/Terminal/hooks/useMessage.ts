@@ -15,7 +15,7 @@ export default function useMessage() {
             createdAt: new Date(),
         };
         setMessages((prevState: Message[]) => [
-            ...(prevState as [Message]),
+            ...(prevState as Message[]),
             newMessage
         ] as Message[]);
         updateHisttory({
@@ -25,13 +25,15 @@ export default function useMessage() {
     };
 
 
-    function log(command: RunCommand) {
-        const newLog = {
-            command: command,
+    function log(command: RunCommand, description: string) {
+        if (!command) return;
+        const newLog: Log = {
+            command,
+            description,
             createdAt: new Date(),
         };
         setLogs((prevState: Log[]) => [
-            ...(prevState as [Log]),
+            ...(prevState as Log[]),
             newLog,
         ] as Log[]);
         updateHisttory({

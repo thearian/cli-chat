@@ -1,5 +1,9 @@
 .container {
-    @apply flex flex-row justify-between items-center p-5 pb-0;
+    @apply flex flex-col p-5 pb-0;
+}
+
+.colOne {
+    @apply flex flex-row justify-between items-center;
 }
 
 .commandName {
@@ -7,9 +11,13 @@
 }
 
 .commandWords {
-    @apply text-gray-500;
+    @apply text-blue-400;
 }
 
 .date {
     @apply text-gray-500;
+}
+
+.description {
+    @apply text-white pl-5 flex flex-col;
 }

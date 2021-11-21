@@ -13,7 +13,7 @@ export default function Terminal() {
     const newMessageRef = useRef<HTMLTextAreaElement>(null)
     const {message, updateMessage, help} = useSearch();
     const {send, log, history} = useMessage();
-    const commandProvider = useCommand();
+    const commandProvider = useCommand(log);
 
 
     const focusNewChat = () => {
@@ -22,7 +22,7 @@ export default function Terminal() {
 
     const handleSendMessage = (content: string) => {
         if (content[0] != "/") return send(content);
-        commandProvider(content, setConversation, log)
+        commandProvider(content, setConversation)
     }
 
     const handleChatChange = (event: KeyboardEvent<HTMLTextAreaElement>) => {

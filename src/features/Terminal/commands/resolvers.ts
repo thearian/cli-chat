@@ -1,3 +1,5 @@
+import { Conversation, Log } from "@/components/@types"
+import { useEffect } from "react"
 import { NewConversationProps, JoinConversationProps, GotoConversationProps, listConversationsProps } from "./@types"
 
 
@@ -30,5 +32,5 @@ async function gotoConversation({ command, setConversation}: GotoConversationPro
 }
 
 async function listConversations({ listConversations }: listConversationsProps) {
-    listConversations()
+    await listConversations()
 }
