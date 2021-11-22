@@ -4,23 +4,21 @@ A chat room in a command line interface. With commands for moving in the convers
 
 ## Contributing
 
-1. Clone
-2. Make a new branch
- - it is recommended to start the branch name with only the following phrases  
-    - Implement: `impl`
-    - Feature: `feat`
-    - Bug Fix: `fix`
-    - Cleaning and renaming: `clean`
-3. Commit changes
-4. Submit a pull-request
-
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+[Read the full instruction for contributing](/CONTRIBUTING.md)
 
 ## Getting Started
 
-First, run the development server:
+First, install dependencies:
 
-```bash
+```console
+npm install
+# or
+yarn install
+```
+
+Running the development server:
+
+```console
 npm run dev
 # or
 yarn dev
