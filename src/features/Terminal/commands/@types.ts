@@ -1,4 +1,4 @@
-import { Conversation, ListedConversations } from "@/components/@types";
+import { AddedConversations, Conversation, JoinedConversation, ListedConversations } from "@/components/@types";
 
 export type CommandDef= {
     struct: string,
@@ -17,11 +17,15 @@ export type CommandsMap = Record<string,CommandDef>;
 export type NewConversationProps = {
     command: FullCommand,
     addConversation: Function,
+    addedConvertsations: AddedConversations,
+    setConversation: Function,
 }
 
 export type JoinConversationProps = {
     command: FullCommand,
     joinConversation: Function,
+    joinedConversation: JoinedConversation,
+    setConversation: Function,
 }
 
 export type GotoConversationProps = {

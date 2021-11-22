@@ -1,4 +1,4 @@
-import { Message, Log, History, HistoryRecordType } from "@/components/@types"
+import { Message, Log, History, HistoryRecordType, CommandStatus } from "@/components/@types"
 import { useState } from "react"
 import { FullCommand } from "../commands/@types"
 
@@ -25,11 +25,12 @@ export default function useMessage() {
     };
 
 
-    function log(command: FullCommand, description: string) {
+    function log(command: FullCommand, description?: string, status?: CommandStatus) {
         if (!command) return;
         const newLog: Log = {
             command,
             description,
+            status,
             createdAt: new Date(),
         };
         setLogs((prevState: Log[]) => [

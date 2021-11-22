@@ -1,4 +1,4 @@
-import { FullCommand } from "@/features/Terminal/commands/@types"
+import { FullCommand, JoinConversationProps } from "@/features/Terminal/commands/@types"
 
 export type Message = {
     user: string,
@@ -8,8 +8,14 @@ export type Message = {
 
 export type Log = {
     command: FullCommand,
-    description: string | string[],
+    description?: string | string[],
+    status?: CommandStatus,
     createdAt: Date,
+}
+
+export type CommandStatus = {
+    success: boolean,
+    error?: string,
 }
 
 export enum HistoryRecordType {
@@ -34,10 +40,26 @@ export type Conversation = {
     last_message_date?: Date,
 }
 
-type GetConversations = {
+export type ListedConversations = {
+    data?: GetConversationsData
+}
+
+type GetConversationsData = {
     getConversations?: Conversation[]
 }
 
-export type ListedConversations = {
-    data?: GetConversations
+export type AddedConversations = {
+    data?: AddedConversationsData
+}
+
+type AddedConversationsData = {
+    addConversation?: Conversation
+}
+
+export type JoinedConversation = {
+    data?: JoinedConversationData,
+}
+
+type JoinedConversationData = {
+    joinConversation?: Conversation
 }

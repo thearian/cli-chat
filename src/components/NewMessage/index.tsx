@@ -1,12 +1,13 @@
 import styles from "@/styles/NewMessage.module.css";
 import { RefObject, KeyboardEvent, useRef, LegacyRef, MutableRefObject } from "react";
+import { Conversation } from "../@types";
 import QuickInfo from "../QuickInfo";
 
 type Props = {
     value: string,
     handleChatChange: (event: KeyboardEvent<HTMLTextAreaElement>) => void,
     newMessageRef:  RefObject<HTMLTextAreaElement>,
-    conversation: string,
+    conversation: Conversation,
     user: string,
 }
 

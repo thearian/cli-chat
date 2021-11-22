@@ -11,20 +11,38 @@ export const CommandResolvers: Record<string, Function> = {
 }
 
 
-async function newConversation({ command, addConversation}: NewConversationProps) {
+async function newConversation({
+    command,
+    addConversation,
+    addedConvertsations,
+    setConversation
+}: NewConversationProps) {
     const newConversationTitle = command.words[1]
 
     await addConversation({
         variables: {title: newConversationTitle}
     })
+
+    const newConversation = addedConvertsations.data?.addConversation
+    setConversation(newConversation)
 }
 
-async function joinConversation({ command, joinConversation}: JoinConversationProps) {
+
+async function joinConversation({
+    command,
+    joinConversation,
+    joinedConversation,
+    setConversation,
+}: JoinConversationProps) {
     const conversationTitle = command.words[1]
-    joinConversation({
+    await joinConversation({
         variables: {title: conversationTitle}
     })
+
+    const newConversation = joinedConversation.data?.joinConversation
+    setConversation(newConversation)
 }
+
 
 async function gotoConversation({
     command,
@@ -34,11 +52,21 @@ async function gotoConversation({
 }: GotoConversationProps) {
     const conversationTitle = command.words[1]
     await listConversations()
-    const userConversations = listedConversations.data?.getConversations?.map(
-        conversation => conversation.title
+    const conversationsWithTheTitle = listedConversations.data?.getConversations?.filter(
+        conversation => conversation.title == conversationTitle
     )
-    if (userConversations?.includes(conversationTitle)) setConversation(conversationTitle)
+    if (conversationsWithTheTitle && conversationsWithTheTitle.length > 0) {
+        setConversation(conversationsWithTheTitle[0])
+        return {
+            success: true,
+        }
+    }
+    return {
+        succcess: false,
+        error: conversationTitle + " is not a joined conversation"
+    }
 }
+
 
 async function listConversations({ listConversations }: listConversationsProps) {
     await listConversations()

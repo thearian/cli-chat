@@ -1,3 +1,4 @@
+import { Conversation } from "@/components/@types";
 import Chats from "@/components/Chats";
 import HelpBar from "@/components/HelpBar";
 import NewMessage from "@/components/NewMessage";
@@ -9,7 +10,13 @@ import useSearch from "./hooks/useSearch";
 
 
 export default function Terminal() {
-    const [conversation, setConversation] = useState("master");
+    const [conversation, setConversation] = useState<Conversation>({
+        id: "master",
+        title: "master",
+        link: "master",
+        member_count: 1,
+        submit_data: new Date(),
+    });
     const newMessageRef = useRef<HTMLTextAreaElement>(null)
     const {message, updateMessage, help} = useSearch();
     const {send, log, history} = useMessage();

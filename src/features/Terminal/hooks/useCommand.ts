@@ -4,7 +4,7 @@ import { CommandResolvers } from "../commands/resolvers";
 import { ADD_CONVERSATION, GET_CONVERSATIONS, JOIN_CONVERSATION } from "@/graphql/conversation"
 import { useLazyQuery, useMutation } from "@apollo/client"
 import { useEffect, useState } from "react";
-import { Conversation } from "@/components/@types";
+import { CommandStatus, Conversation } from "@/components/@types";
 
 
 export default function useCommand(log: Function) {
@@ -12,6 +12,7 @@ export default function useCommand(log: Function) {
     const [joinConversation, joinedConversation] = useMutation(JOIN_CONVERSATION);
     const [listConversations, listedConversations] = useLazyQuery(GET_CONVERSATIONS);
     const [currentCommand, setCurrentCommand] = useState<FullCommand>()
+    const [currentStatus, setCurrentStatus] = useState<CommandStatus>()
 
 
     const provider = async ( expression: string, setConversation: Function) => {
@@ -27,13 +28,17 @@ export default function useCommand(log: Function) {
         const allProps = {
             command: FullCommand,
             addConversation,
+            addedConversation,
             joinConversation,
+            joinedConversation,
             setConversation,
             listConversations,
             listedConversations,
         }
+
         const action = CommandResolvers[FullCommand.commandName.expression]
-        await action(allProps)
+        const status = await action(allProps)
+        setCurrentStatus(status)
         setCurrentCommand(FullCommand)
     }
     
@@ -46,7 +51,7 @@ export default function useCommand(log: Function) {
     function logCommand() {
         if (!currentCommand) return;
         const description = commandDescription(currentCommand, listedConversations.data?.getConversations)
-        log(currentCommand, description)
+        log(currentCommand, description, currentStatus)
         setCurrentCommand(undefined)
     }
     
@@ -58,6 +63,11 @@ export default function useCommand(log: Function) {
             case "list":
                 description = (data as Conversation[]).map( conversation => conversation.title )
                 listedConversations.data = null
+                setCurrentStatus(description.length > 1 ? {
+                    success: true
+                } : {
+                    success: false,
+                })
             break;
         }
         return description

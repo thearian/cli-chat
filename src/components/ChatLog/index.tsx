@@ -20,7 +20,9 @@ export default function ChatLog({ data }: Props) {
         <div className={styles.container} key={data.createdAt.toLocaleString()}>
             <div className={styles.colOne}>
                 <div className="flex flex-row">
-                    <span className={styles.commandName}>{data.command.commandName.expression}</span>
+                    <span className={styles.commandName + ` ${data.status && !data.status.success ? styles.failed: ''}`}>
+                        {data.command.commandName.expression}
+                    </span>
                     <span className={styles.commandWords}>{commandWords}</span>
                 </div>
                 <div className={styles.date}>
@@ -28,6 +30,14 @@ export default function ChatLog({ data }: Props) {
                 </div>
             </div>
             <span className={styles.description}>{description}</span>
+            {data.status?.error && 
+                <span className={styles.error}>
+                    <b className="font-bold mr-3">
+                        Command Failed:
+                    </b>
+                    {data.status.error}
+                </span>
+            }
         </div>
     )
 }

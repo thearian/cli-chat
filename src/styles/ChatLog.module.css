@@ -10,8 +10,16 @@
     @apply font-bold text-green-400 uppercase mr-3;
 }
 
+.failed {
+    @apply text-red-400;
+}
+
 .commandWords {
-    @apply text-blue-400;
+    @apply text-blue-400 mr-3;
+}
+
+.error {
+    @apply ml-5 text-red-400;
 }
 
 .date {
