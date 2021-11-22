@@ -4,7 +4,7 @@ import { CommandDef} from "../commands/@types";
 
 export default function useSearch() {
     const [message,setMessage] = useState<string>("");
-    const [help,setHelp] = useState<string>("");
+    const [help,setHelp] = useState<CommandDef | null>(null);
 
     const updateMessage = (event: KeyboardEvent<HTMLTextAreaElement>, send: Function) => {
         const newChat = (event.target as HTMLInputElement).value;
@@ -24,15 +24,17 @@ export default function useSearch() {
         }
         if (recommend) {
             setMessage("/" + recommend.expression);
-            setHelp(recommend.struct)
         }
         else {
             setMessage(newChat)
-            setHelp("")
+            setHelp(null)
         }
+        newChat.includes("-h") && setHelp(
+            searchCommand(newChat.split(" ")[0])
+        )
     }
     
-    const searchPresets = (text: string): CommandDef| null => {
+    const searchPresets = (text: string): CommandDef | null => {
         let foundCommand = null;
         if (text[0] == "/") {
             foundCommand = searchCommand(text);

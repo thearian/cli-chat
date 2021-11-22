@@ -49,7 +49,7 @@ export default function Terminal() {
                     handleChatChange={handleChatChange}
                     newMessageRef={newMessageRef}
                 />
-                <HelpBar struct={help} />
+                <HelpBar def={help} />
             </div>
         </div>
     );
