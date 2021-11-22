@@ -18,8 +18,6 @@ export default function NewMessage(props: Props) {
 
     const autoResize = (event: KeyboardEvent<HTMLTextAreaElement>) => {
         const self = (event.target as HTMLTextAreaElement)
-        console.log(self.scrollHeight / oneRem);
-        
         self.rows = self.scrollHeight / oneRem
         if(glass.current) glass.current.rows = self.scrollHeight / oneRem
     }
@@ -33,14 +31,12 @@ export default function NewMessage(props: Props) {
                 onKeyPress={autoResize}
                 onKeyDownCapture={props.handleChatChange}
                 onKeyUpCapture={props.handleChatChange}
-                // rows={1}
                 autoFocus={true}
                 ref={props.newMessageRef}
             ></textarea>
             <textarea
                 value={props.value}
                 className={styles.glass}
-                // rows={1}
                 ref={glass}
             ></textarea>
         </div>
