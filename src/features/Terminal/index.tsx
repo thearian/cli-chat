@@ -19,17 +19,29 @@ export default function Terminal() {
     });
     const newMessageRef = useRef<HTMLTextAreaElement>(null)
     const {message, updateMessage, help} = useSearch();
-    const {send, log, history} = useMessage();
-    const commandProvider = useCommand(log);
+    const {
+        newMessage,
+        newMessageAsMe,
+        newLog,
+        clearHistory,
+        history
+    } = useMessage();
+    const commandProvider = useCommand(newLog);
 
 
     const focusNewChat = () => {
         newMessageRef.current?.focus()
     }
 
+    const updateConversation = (conversation: Conversation) => {
+        clearHistory()
+        setConversation(conversation)
+        conversation.messages?.forEach(newMessage);
+    }
+
     const handleSendMessage = (content: string) => {
-        if (content[0] != "/") return send(content);
-        commandProvider(content, setConversation)
+        if (content[0] == "/") return commandProvider(content, updateConversation)
+        newMessageAsMe({ content, conversation });
     }
 
     const handleChatChange = (event: KeyboardEvent<HTMLTextAreaElement>) => {

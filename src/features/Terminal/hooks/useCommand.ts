@@ -10,7 +10,9 @@ import { CommandStatus, Conversation } from "@/components/@types";
 export default function useCommand(log: Function) {
     const [addConversation, addedConversation] = useMutation(ADD_CONVERSATION);
     const [joinConversation, joinedConversation] = useMutation(JOIN_CONVERSATION);
-    const [listConversations, listedConversations] = useLazyQuery(GET_CONVERSATIONS);
+    const [listConversations, listedConversations] = useLazyQuery(GET_CONVERSATIONS,{
+        fetchPolicy: 'network-only'
+    });
     const [currentCommand, setCurrentCommand] = useState<FullCommand>()
     const [currentStatus, setCurrentStatus] = useState<CommandStatus>()
 

@@ -19,8 +19,10 @@ export default function NewMessage(props: Props) {
     const autoResize = (event: KeyboardEvent<HTMLTextAreaElement>) => {
         const self = (event.target as HTMLTextAreaElement)
         self.rows = self.scrollHeight / oneRem
-        if(glass.current) glass.current.rows = self.scrollHeight / oneRem
+        if(glass.current) glass.current.rows = self.rows
     }
+
+    if (props.newMessageRef.current) props.newMessageRef.current.rows = 1
 
     return <div className={styles.container}>
         <QuickInfo conversation={props.conversation} user={props.user} />
