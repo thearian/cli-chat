@@ -7,7 +7,7 @@ type Props = {
     value: string,
     handleChatChange: (event: KeyboardEvent<HTMLTextAreaElement>) => void,
     newMessageRef:  RefObject<HTMLTextAreaElement>,
-    conversation: Conversation,
+    conversation?: Conversation,
     user: string,
 }
 
