@@ -46,10 +46,17 @@ export default function Terminal() {
     }
 
     
-    if (masterConversation.loading || masterConversation.error) return (
+    if (masterConversation.loading) return (
         <div className={styles.container}>
-            <div className="p-5">
+            <div className="p-5 text-yellow-300">
                 Loading...
+            </div>
+        </div>
+    )
+    if (masterConversation.error) return (
+        <div className={styles.container}>
+            <div className="p-5 text-red-400">
+                Some error has happened
             </div>
         </div>
     )
