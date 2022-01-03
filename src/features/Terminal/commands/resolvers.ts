@@ -1,4 +1,4 @@
-import { Conversation, Log } from "@/components/@types"
+import { CommandStatus, Conversation, Log } from "@/components/@types"
 import { useEffect } from "react"
 import { NewConversationProps, JoinConversationProps, GotoConversationProps, listConversationsProps } from "./@types"
 
@@ -52,6 +52,12 @@ async function gotoConversation({
 }: GotoConversationProps) {
     const conversationTitle = command.words[1]
     await listConversations()
+
+    if (!listedConversations.data) return {
+        success: false,
+        error: "No data were found"
+    }
+
     const conversationsWithTheTitle = listedConversations.data?.getConversations?.filter(
         conversation => conversation.title == conversationTitle
     )
@@ -61,8 +67,10 @@ async function gotoConversation({
             success: true,
         }
     }
+    console.log(conversationsWithTheTitle, listedConversations);
+    
     return {
-        succcess: false,
+        success: false,
         error: conversationTitle + " is not a joined conversation"
     }
 }

@@ -16,20 +16,20 @@ export const ADD_CONVERSATION = gql`
           join_date
           last_login_date
         }
-        parent {
-          id
-          conversation_id
-          sender {
-            id
-            username
-            join_date
-            last_login_date
-          }
-          content
-          submit_date
-          last_edit_date
-          delete_date
-        }
+        # parent {
+        #   id
+        #   conversation_id
+        #   sender {
+        #     id
+        #     username
+        #     join_date
+        #     last_login_date
+        #   }
+        #   content
+        #   submit_date
+        #   last_edit_date
+        #   delete_date
+        # }
         content
         submit_date
         last_edit_date
@@ -61,20 +61,20 @@ export const JOIN_CONVERSATION = gql`
           join_date
           last_login_date
         }
-        parent {
-          id
-          conversation_id
-          sender {
-            id
-            username
-            join_date
-            last_login_date
-          }
-          content
-          submit_date
-          last_edit_date
-          delete_date
-        }
+        # parent {
+        #   id
+        #   conversation_id
+        #   sender {
+        #     id
+        #     username
+        #     join_date
+        #     last_login_date
+        #   }
+        #   content
+        #   submit_date
+        #   last_edit_date
+        #   delete_date
+        # }
         content
         submit_date
         last_edit_date
@@ -96,6 +96,78 @@ export const GET_CONVERSATIONS = gql`
       title
       link
       member_count
+      messages {
+        id
+        conversation_id
+        sender {
+          id
+          username
+          join_date
+          last_login_date
+        }
+        # parent {
+        #   id
+        #   conversation_id
+        #   sender {
+        #     id
+        #     username
+        #     join_date
+        #     last_login_date
+        #   }
+        #   content
+        #   submit_date
+        #   last_edit_date
+        #   delete_date
+        # }
+        content
+        submit_date
+        last_edit_date
+        delete_date
+      }
+      mute_status
+      mute_date
+      submit_date
+      delete_date
+      last_message_date
+    }
+  }
+`;
+
+export const GET_CONVERSATIONS_BY_LINK = gql`
+  query getConversationByLink($link: String!) {
+    getConversationByLink(link: $link) {
+      id
+      title
+      link
+      member_count
+      messages {
+        id
+        conversation_id
+        sender {
+          id
+          username
+          join_date
+          last_login_date
+        }
+        # parent {
+        #   id
+        #   conversation_id
+        #   sender {
+        #     id
+        #     username
+        #     join_date
+        #     last_login_date
+        #   }
+        #   content
+        #   submit_date
+        #   last_edit_date
+        #   delete_date
+        # }
+        content
+        submit_date
+        last_edit_date
+        delete_date
+      }
       mute_status
       mute_date
       submit_date

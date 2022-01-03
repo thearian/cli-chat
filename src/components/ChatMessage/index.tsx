@@ -6,9 +6,9 @@ type Props = {
 };
 
 export default function ChatMessage({ data }: Props) {
-    return <div className={styles.container} key={data.createdAt.toLocaleString()}>
-        <div className={styles.user}>[{ data.user }]</div>
+    return <div className={styles.container} key={data.id}>
+        <div className={styles.user}>[{ data.sender.username }]</div>
         <div className={styles.content}>{ data.content }</div>
-        <div className={styles.date}>{ data.createdAt.toLocaleString() }</div>
+        <div className={styles.date}>{ data.submit_date.toLocaleString() }</div>
     </div>
 }

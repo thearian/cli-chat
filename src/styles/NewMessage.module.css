@@ -15,7 +15,7 @@
 }
 
 .glass:focus {
-  @apply ring-0;
+  @apply ring-0 outline-none;
 }
 
 .chat {
